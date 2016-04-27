@@ -26,16 +26,38 @@ function getComics(sources, callback) {
 }
 
 
-function devcomic(callback) {
+function devcomic(callback, options) {
     if (!comicsSources) {
         var sourcesPath = path.join(__dirname, 'sources.json');
         comicsSources = JSON.parse(fs.readFileSync(sourcesPath, 'utf8'));
     }
-    getComics(comicsSources.slice(), function getComicsCb(comics) {
-        comics = comics.reduce(function reduceCb(results, comic) {
-            results[comic[0]] = comic[1];
-            return results;
+    options = options || {};
+
+    var sources = comicsSources;
+    if (options.sources) {
+        sources = sources.filter(function filterCb(source) {
+            var sourceRegex = new RegExp('^' + source.name + '$', 'gi');
+            for (var i = 0; i < options.sources.length; i++) {
+                if (sourceRegex.test(options.sources[i])) {
+                    return true;
+                }
+            }
+            return false;
+        });
+    }
+
+    getComics(sources, function getComicsCb(comics) {
+        comics = comics.reduce(function reduceCb(object, comic) {
+            object[comic[0]] = comic[1];
+            return object;
         }, {});
+
+        if (!options.all) {
+            Object.keys(comics)
+                .forEach(function forEachCb(comicSource) {
+                    comics[comicSource] = comics[comicSource][0];
+                });
+        }
 
         if (typeof callback === 'function') {
             return callback(comics);
