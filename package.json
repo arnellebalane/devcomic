@@ -1,0 +1,17 @@
+{
+  "name": "devcomic",
+  "version": "0.0.0",
+  "description": "Get latest dev comics from several comic sites",
+  "main": "index.js",
+  "bin": "cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Arnelle Balane <arnellebalane@gmail.com> (arnellebalane.com)",
+  "license": "MIT",
+  "dependencies": {
+    "feed-read": "0.0.1",
+    "ora": "^0.2.1"
+  }
+}
