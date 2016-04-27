@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 var meow = require('meow');
 var ora = require('ora');
+var chalk = require('chalk');
 var devcomic = require('.');
 
 
@@ -58,6 +59,9 @@ devcomic.on('source', function onCb(source) {
 devcomic(function devcomicCb(comics) {
     spinner.stop();
 
+    var title = chalk.green.bold;
+    var link = chalk.dim;
+
     var output = [];
     Object.keys(comics).forEach(function forEachComicsCb(comicSource) {
         output.push('');
@@ -66,7 +70,8 @@ devcomic(function devcomicCb(comics) {
         var comicData = comics[comicSource] instanceof Array
             ? comics[comicSource] : [comics[comicSource]];
         comicData.forEach(function forEachComicDataCb(comic) {
-            output.push('    ' + comic.title.trim() + '   ' + comic.link);
+            output.push('    ' + title(comic.title.trim())
+                + ' (' + link(comic.link.trim()) + ')');
         });
     });
     output.push('');
