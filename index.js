@@ -1,14 +1,18 @@
 var fs = require('fs');
 var path = require('path');
 var feed = require('feed-read');
+var ee = require('event-emitter');
 
 
 var comicsSources = null;
+var emitter = ee({});
 
 
 function getComics(sources, callback) {
     if (sources.length) {
         var source = sources.shift();
+        emitter.emit('source', source);
+
         feed(source.link, function feedCb(error, articles) {
             if (error) {
                 throw error;
@@ -65,6 +69,9 @@ function devcomic(callback, options) {
         throw new Error('devcomic callback must be a function.');
     });
 }
+
+
+devcomic.on = emitter.on.bind(emitter);
 
 
 module.exports = devcomic;

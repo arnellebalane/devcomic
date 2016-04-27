@@ -11,6 +11,7 @@
   "author": "Arnelle Balane <arnellebalane@gmail.com> (arnellebalane.com)",
   "license": "MIT",
   "dependencies": {
+    "event-emitter": "^0.3.4",
     "feed-read": "0.0.1",
     "ora": "^0.2.1"
   }
