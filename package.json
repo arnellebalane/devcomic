@@ -1,6 +1,6 @@
 {
   "name": "devcomic",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Get latest dev comics from several comic sites",
   "main": "index.js",
   "bin": "cli.js",
