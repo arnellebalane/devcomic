@@ -13,6 +13,7 @@
   "dependencies": {
     "event-emitter": "^0.3.4",
     "feed-read": "0.0.1",
+    "meow": "^3.7.0",
     "ora": "^0.2.1"
   }
 }
