@@ -2,7 +2,7 @@
 var meow = require('meow');
 var ora = require('ora');
 var chalk = require('chalk');
-var devcomic = require('.');
+var devcomic = require('./');
 
 
 var cli = meow([
