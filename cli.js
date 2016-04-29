@@ -13,7 +13,7 @@ var cli = meow([
     '',
     'Options:',
     '  --all, -a              Display all results.',
-    '  --preview, -p          Preview comics images.'
+    '  --preview, -p          Preview comics images.',
     '',
     'By default (without options), it displays one result from all sources.',
     '',
