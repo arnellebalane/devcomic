@@ -56,6 +56,12 @@ devcomic.on('source', function onCb(source) {
     spinner.text = 'Getting comics from ' + source.name;
 });
 
+devcomic.on('error', function onCb(message) {
+    spinner.stop();
+    console.log('\n  ' + chalk.red.dim(message));
+    spinner.start();
+});
+
 devcomic(function devcomicCb(comics) {
     spinner.stop();
 

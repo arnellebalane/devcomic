@@ -38,16 +38,26 @@ function devcomic(callback, options) {
     options = options || {};
 
     var sources = comicsSources;
-    if (options.sources) {
+    if (options.sources instanceof Array) {
         sources = sources.filter(function filterCb(source) {
             var sourceRegex = new RegExp('^' + source.name + '$', 'gi');
             for (var i = 0; i < options.sources.length; i++) {
                 if (sourceRegex.test(options.sources[i])) {
+                    options.sources.splice(i, 1);
                     return true;
                 }
             }
             return false;
         });
+
+        if (sources.length === 0) {
+            emitter.emit('error', 'Given sources are not available, going to '
+                + 'use all available sources.');
+            sources = comicsSources;
+        } else if (options.sources.length > 0) {
+            emitter.emit('error', 'The following comics sources are not '
+                + 'available: ' + options.sources.join(' '));
+        }
     }
 
     getComics(sources, function getComicsCb(comics) {
