@@ -1,6 +1,6 @@
 {
   "name": "devcomic",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Get latest dev comics from several comic sites",
   "main": "index.js",
   "bin": "cli.js",
@@ -8,10 +8,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-      "comics",
-      "comic",
-      "cli",
-      "cli-app"
+    "comics",
+    "comic",
+    "cli",
+    "cli-app"
   ],
   "author": "Arnelle Balane <arnellebalane@gmail.com> (arnellebalane.com)",
   "license": "MIT",
