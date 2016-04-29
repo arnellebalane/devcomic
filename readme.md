@@ -58,7 +58,7 @@ Returns an object of comics from different sources. It could look like:
 
 - **`all`** Display all results.
 - **`sources`** Only display results from the given list of sources. Currently,
-  the available sources are only **CommitStrip** and **HackToons**.
+  the available sources are only **CommitStrip** and **HackToon**.
 
 
 ### CLI
@@ -71,7 +71,8 @@ $ devcomic --help
     $ devcomic [options] [sources]
 
   Options:
-    --all, -a     Display all results.
+    --all, -a              Display all results.
+    --preview, -p          Preview comics images.
 
   By default (without options), it displays one result from all sources.
 
@@ -79,6 +80,7 @@ $ devcomic --help
     $ devcomic
     $ devcomic --all
     $ devcomic --all commitstrip hacktoons
+    $ devcomic -pa
 ```
 
 
