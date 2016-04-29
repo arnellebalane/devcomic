@@ -12,23 +12,27 @@ var cli = meow([
     '  $ devcomic [options] [sources]',
     '',
     'Options:',
-    '  --all, -a                          Display all results.',
+    '  --all, -a              Display all results.',
+    '  --preview, -p          Preview comics images.'
     '',
     'By default (without options), it displays one result from all sources.',
     '',
     'Examples:',
     '  $ devcomic',
     '  $ devcomic --all',
-    '  $ devcomic --all commitstrip hacktoons'
+    '  $ devcomic --all commitstrip hacktoons',
+    '  $ devcomic -pa'
 ], {
     'alias': {
-        'a': 'all'
+        'a': 'all',
+        'p': 'preview'
     },
     'boolean': ['all']
 });
 
 var options = {
     'all': cli.flags.all === true,
+    'preview': cli.flags.preview === true,
     'sources': cli.input.length ? cli.input : null
 };
 
@@ -106,5 +110,7 @@ devcomic(function devcomicCb(comics) {
 
     console.log(output.join('\n'));
 
-    openImages(images);
+    if (options.preview) {
+        openImages(images);
+    }
 }, options);
