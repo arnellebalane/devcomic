@@ -1,6 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var feed = require('feed-read');
+var cheerio = require('cheerio');
 var ee = require('event-emitter');
 
 
@@ -16,6 +17,10 @@ function getComics(sources, callback) {
         feed(source.link, function feedCb(error, articles) {
             if (error) {
                 throw error;
+            }
+            for (var i = 0; i < articles.length; i++) {
+                var $ = cheerio.load(articles[i].content);
+                articles[i].image = $(source.selector).attr('src');
             }
             var comics = [[source.name, articles]];
             if (sources.length) {

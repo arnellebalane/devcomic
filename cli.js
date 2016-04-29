@@ -2,6 +2,7 @@
 var meow = require('meow');
 var ora = require('ora');
 var chalk = require('chalk');
+var openImage = require('open-image');
 var devcomic = require('./');
 
 
@@ -49,6 +50,25 @@ spinner.spinner = {
     ]
 };
 
+var openImageSpinner = ora('Opening images');
+openImageSpinner.spinner = spinner.spinner;
+
+
+function openImages(images) {
+    openImageSpinner.start();
+
+    var image = images.shift();
+    openImageSpinner.text = 'Opening ' + image;
+
+    return openImage(image).then(function thenCb() {
+        if (images.length) {
+            return openImages(images);
+        }
+        openImageSpinner.stop();
+        return null;
+    });
+}
+
 
 spinner.start();
 
@@ -69,6 +89,7 @@ devcomic(function devcomicCb(comics) {
     var link = chalk.dim;
 
     var output = [];
+    var images = [];
     Object.keys(comics).forEach(function forEachComicsCb(comicSource) {
         output.push('');
         output.push('  ' + comicSource + ':');
@@ -78,9 +99,12 @@ devcomic(function devcomicCb(comics) {
         comicData.forEach(function forEachComicDataCb(comic) {
             output.push('    ' + title(comic.title.trim())
                 + ' (' + link(comic.link.trim()) + ')');
+            images.push(comic.image);
         });
     });
     output.push('');
 
     console.log(output.join('\n'));
+
+    openImages(images);
 }, options);

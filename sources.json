@@ -1,10 +1,12 @@
 [
     {
         "name": "CommitStrip",
-        "link": "http://www.commitstrip.com/en/feed/"
+        "link": "http://www.commitstrip.com/en/feed/",
+        "selector": "p > img:first-child"
     },
     {
         "name": "HackToon",
-        "link": "http://hacktoon.com/feed/rss.xml"
+        "link": "http://hacktoon.com/feed/rss.xml",
+        "selector": "img:first-of-type"
     }
 ]
