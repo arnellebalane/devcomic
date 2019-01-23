@@ -25,8 +25,15 @@ const spinner = ora(chalk.cyan('Fetching comics'));
 
 (async () => {
     spinner.start();
-    const response = await devComic({sources});
-    spinner.stop();
 
-    console.log(response);
+    try {
+        const response = await devComic({sources});
+        spinner.stop();
+
+        console.log(response);
+    } catch (error) {
+        spinner.stop();
+
+        console.log(chalk.red(error));
+    }
 })();
