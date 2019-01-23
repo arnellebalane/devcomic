@@ -30,7 +30,10 @@ const spinner = ora(chalk.cyan('Fetching comics'));
         const response = await devComic({sources});
         spinner.stop();
 
-        console.log(response);
+        console.log(`\n  ${chalk.dim('Latest comics:')}\n`);
+        response.forEach(({source, image}) => {
+            console.log(`  ${chalk.yellow(source)}\t${chalk.green(image)}`);
+        });
     } catch (error) {
         spinner.stop();
 
