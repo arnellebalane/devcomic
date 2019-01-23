@@ -23,5 +23,10 @@
     "meow": "5.0.0",
     "open-image": "0.1.2",
     "ora": "3.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.2.3",
+    "@babel/core": "7.2.2",
+    "@babel/preset-env": "7.3.1"
   }
 }
