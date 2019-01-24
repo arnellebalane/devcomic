@@ -1,0 +1,12 @@
+{
+  "commitstrip": {
+    "name": "CommitStrip",
+    "url": "http://www.commitstrip.com/en/feed/",
+    "key": "content:encoded"
+  },
+  "hacktoon": {
+    "name": "HackToon",
+    "url": "http://hacktoon.com/feed/rss.xml",
+    "key": "content"
+  }
+}

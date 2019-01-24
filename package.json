@@ -2,10 +2,12 @@
   "name": "devcomic",
   "version": "1.0.1",
   "description": "Get latest dev comics from several comic sites",
-  "main": "index.js",
-  "bin": "cli.js",
+  "main": "dist/index.js",
+  "bin": "dist/cli.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel --delete-dir-on-start --copy-files --out-dir dist source",
+    "lint": "eslint 'source/**/*.js'",
+    "prepublish": "npm run build"
   },
   "keywords": [
     "comics",
@@ -16,12 +18,46 @@
   "author": "Arnelle Balane <arnellebalane@gmail.com> (arnellebalane.com)",
   "license": "MIT",
   "dependencies": {
-    "chalk": "^1.1.3",
-    "cheerio": "^0.20.0",
-    "event-emitter": "^0.3.4",
-    "feed-read": "0.0.1",
-    "meow": "^3.7.0",
-    "open-image": "^0.1.2",
-    "ora": "^0.2.1"
+    "@babel/polyfill": "7.2.5",
+    "chalk": "2.4.2",
+    "cheerio": "0.22.0",
+    "listr": "0.14.3",
+    "meow": "5.0.0",
+    "rss-parser": "3.6.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.2.3",
+    "@babel/core": "7.2.2",
+    "@babel/preset-env": "7.3.1",
+    "eslint": "5.12.1",
+    "eslint-config-arnellebalane": "5.0.0",
+    "husky": "1.3.1",
+    "lint-staged": "8.1.0"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "arnellebalane"
+    ],
+    "parserOptions": {
+      "ecmaVersion": "2017",
+      "sourceType": "module"
+    },
+    "env": {
+      "node": true,
+      "es6": true
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": "npm run lint"
   }
 }
