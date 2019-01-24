@@ -1,89 +1,74 @@
-devcomic
-========
+# devcomic
 
 Get latest dev comics from several comic sites.
 
 
-### Install
+## Installation
 
-You can install it locally:
+You can install it locally to use the API:
 
 ```bash
-npm install --save devcomic
+npm install devcomic
 ```
 
-or globally:
+or globally to use the CLI:
 
 
 ```
-npm install --g devcomic
+npm install -g devcomic
 ```
 
 
-### Usage
+## Usage
 
-```javascript
-var devcomic = require('devcomic');
+```js
+const devcomic = require('devcomic');
 
-devcomic(function(comics) {
-    // comics is an `Object`
+devcomic({sources: ['commitstrip', 'xkcd']}).then(results => {
+    // [{
+    //   "source": "commitstrip",
+    //   "image": "http://..."
+    // }, {
+    //   "source": "xkcd",
+    //   "image": "http://..."
+    // }]
 });
 ```
 
 
-### API
+## API
 
-#### `devcomic(callback [, options])`
-
-Returns an object of comics from different sources. It could look like:
-
-```javascript
-{
-    "CommitStrip": [
-        {
-            "title": "...",
-            "link": "..."
-        }
-    ],
-    "HackToons": [
-        {
-            "title": "...",
-            "link": "..."
-        }
-    ]
-}
-```
-
-##### `options` object
-
-- **`all`** Display all results.
-- **`sources`** Only display results from the given list of sources. Currently,
-  the available sources are only **CommitStrip** and **HackToon**.
+- **`devcomic(options)`**
+  - Accepts the following options as an object:
+    - `options.sources`
+      - An array of comic source idenfiers, e.g. `['commitstrip', 'xkcd']`
+      - Available sources are: `commitstrip`, `xkcd`, `hacktoons`
+      - If not provided, defaults to using all the available sources
+  - Returns a `Promise` that resolves to an array of objects containing the following keys:
+    - `source`: The comic source identifier
+    - `image`: The URL to the comic image
 
 
-### CLI
+## CLI
 
 ```bash
 $ devcomic --help
 
   Usage:
-    $ devcomic [sources]
-    $ devcomic [options] [sources]
+    $ devcomic [source ...]
 
-  Options:
-    --all, -a              Display all results.
-    --preview, -p          Preview comics images.
-
-  By default (without options), it displays one result from all sources.
+  Sources:
+    commitstrip
+    xkcd
+    hacktoon
 
   Examples:
     $ devcomic
-    $ devcomic --all
-    $ devcomic --all commitstrip hacktoons
-    $ devcomic -pa
+    $ devcomic commitstrip
+    $ devcomic commitstrip xkcd
 ```
 
 
-### License
+## License
 
 MIT License
