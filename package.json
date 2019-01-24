@@ -5,7 +5,10 @@
   "main": "dist/index.js",
   "bin": "dist/cli.js",
   "scripts": {
-    "build": "babel --delete-dir-on-start --copy-files --out-dir dist source",
+    "build:source": "babel --copy-files --out-dir dist source",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build": "npm run build:types && npm run build:source",
+    "type-check": "tsc --noEmit",
     "lint": "eslint 'source/**/*.js'",
     "prepublish": "npm run build"
   },
