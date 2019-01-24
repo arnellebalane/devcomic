@@ -24,6 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "@babel/polyfill": "7.2.5",
+    "@types/execa": "0.9.0",
     "chalk": "2.4.2",
     "cheerio": "0.22.0",
     "listr": "0.14.3",
