@@ -34,12 +34,15 @@ const sources = cli.input.length > 0
                 task.title = `${chalk.yellow(source)}\t${chalk.green(comic.image)}`;
             }
         })), {
-            concurrent: true
+            concurrent: true,
+            exitOnError: false
         });
 
         await tasks.run();
     } catch (error) {
-        // eslint-disable-next-line no-process-exit
-        process.exit(1);
+        /*
+         * This catch block is intentionally left empty, since the error is already
+         * being displayed under the Listr task.
+         */
     }
 })();
