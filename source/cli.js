@@ -37,6 +37,6 @@ const spinner = ora(chalk.cyan('Fetching comics'));
     } catch (error) {
         spinner.stop();
 
-        console.log(chalk.red(error));
+        console.log(chalk.red(error.message));
     }
 })();

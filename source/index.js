@@ -11,7 +11,7 @@ export default function devComic({sources=[]}={}) {
 
     const unknown = sources.filter(source => !(source in sourcesConfig));
     if (unknown.length > 0) {
-        return Promise.reject(`Unknown sources: ${unknown.join(' ')}`);
+        return Promise.reject(new Error(`Unknown sources: ${unknown.join(' ')}`));
     }
 
     return Promise.all(sources.map(async source => {
