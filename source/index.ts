@@ -4,7 +4,16 @@ import sourcesConfig from './sources.json';
 
 const parser = new RSSParser();
 
-export default function devComic({sources=[]}={}) {
+type DevComicOptions = {
+    sources?: Array<string>
+}
+
+type DevComicOutput = Promise<Array<{
+    source: string,
+    image: string
+}>>
+
+export default function devComic({sources=[]}: DevComicOptions={}): DevComicOutput {
     if (sources.length === 0) {
         sources = Object.keys(sourcesConfig);
     }
