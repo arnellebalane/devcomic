@@ -6,7 +6,8 @@
   "bin": "dist/cli.js",
   "scripts": {
     "build": "babel --delete-dir-on-start --copy-files --out-dir dist source",
-    "lint": "eslint 'source/**/*.js'"
+    "lint": "eslint 'source/**/*.js'",
+    "prepublish": "npm run build"
   },
   "keywords": [
     "comics",
