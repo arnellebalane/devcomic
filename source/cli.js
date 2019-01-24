@@ -12,12 +12,13 @@ const cli = meow(`
 
     ${chalk.dim.underline('Sources:')}
       ${chalk.yellow('commitstrip')}
+      ${chalk.yellow('xkcd')}
       ${chalk.yellow('hacktoon')}
 
     ${chalk.dim.underline('Examples:')}
       ${chalk.dim('$')} ${chalk.green('devcomic')}
       ${chalk.dim('$')} ${chalk.green('devcomic')} ${chalk.yellow('commitstrip')}
-      ${chalk.dim('$')} ${chalk.green('devcomic')} ${chalk.yellow('commitstrip hacktoon')}
+      ${chalk.dim('$')} ${chalk.green('devcomic')} ${chalk.yellow('commitstrip xkcd')}
 `);
 
 const sources = cli.input.length > 0
