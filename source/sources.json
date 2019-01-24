@@ -4,6 +4,11 @@
     "url": "http://www.commitstrip.com/en/feed/",
     "key": "content:encoded"
   },
+  "xkcd": {
+    "name": "xkcd",
+    "url": "https://xkcd.com/rss.xml",
+    "key": "content"
+  },
   "hacktoon": {
     "name": "HackToon",
     "url": "http://hacktoon.com/feed/rss.xml",
