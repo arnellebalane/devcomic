@@ -39,6 +39,7 @@ const sources = cli.input.length > 0
 
         await tasks.run();
     } catch (error) {
-        console.log(chalk.red(error.message));
+        // eslint-disable-next-line no-process-exit
+        process.exit(1);
     }
 })();
