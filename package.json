@@ -5,8 +5,10 @@
   "main": "dist/index.js",
   "bin": "dist/cli.js",
   "scripts": {
+    "clean": "rm -rf dist",
     "build:source": "babel --copy-files --extensions '.ts' --out-dir dist source",
     "build:types": "tsc --emitDeclarationOnly",
+    "prebuild": "npm run clean",
     "build": "npm run build:types && npm run build:source",
     "type-check": "tsc --noEmit",
     "lint": "eslint 'source/**/*.js'",
