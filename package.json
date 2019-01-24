@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "bin": "dist/cli.js",
   "scripts": {
-    "build": "babel --delete-dir-on-start --copy-files --out-dir dist source"
+    "build": "babel --delete-dir-on-start --copy-files --out-dir dist source",
+    "lint": "eslint 'source/**/*.js'"
   },
   "keywords": [
     "comics",
@@ -35,5 +36,18 @@
     "presets": [
       "@babel/preset-env"
     ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "arnellebalane"
+    ],
+    "parserOptions": {
+      "ecmaVersion": "2017",
+      "sourceType": "module"
+    },
+    "env": {
+      "node": true,
+      "es6": true
+    }
   }
 }
