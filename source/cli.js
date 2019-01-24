@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 import '@babel/polyfill';
-import ora from 'ora';
 import meow from 'meow';
 import chalk from 'chalk';
+import Listr from 'listr';
 import devComic from '.';
+import sourcesConfig from './sources.json';
 
 const cli = meow(`
     ${chalk.dim.underline('Usage:')}
@@ -19,24 +20,25 @@ const cli = meow(`
       ${chalk.dim('$')} ${chalk.green('devcomic')} ${chalk.yellow('commitstrip hacktoon')}
 `);
 
-const sources = cli.input;
-
-const spinner = ora(chalk.cyan('Fetching comics'));
+const sources = cli.input.length > 0
+    ? cli.input
+    : Object.keys(sourcesConfig);
 
 (async () => {
-    spinner.start();
-
     try {
-        const response = await devComic({sources});
-        spinner.stop();
+        const tasks = new Listr(sources.map(source => ({
+            title: `${chalk.dim('Fetching latest comic from')} ${chalk.yellow(source)}`,
 
-        console.log(`\n  ${chalk.dim('Latest comics:')}\n`);
-        response.forEach(({source, image}) => {
-            console.log(`  ${chalk.yellow(source)}\t${chalk.green(image)}`);
+            task: async (context, task) => {
+                const [comic] = await devComic({sources: [source]});
+                task.title = `${chalk.yellow(source)}\t${chalk.green(comic.image)}`;
+            }
+        })), {
+            concurrent: true
         });
-    } catch (error) {
-        spinner.stop();
 
+        await tasks.run();
+    } catch (error) {
         console.log(chalk.red(error.message));
     }
 })();
