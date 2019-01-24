@@ -5,7 +5,8 @@
     "target": "esnext",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "noEmitOnError": true
   },
   "include": [
     "source/**/*"
